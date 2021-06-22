@@ -3,7 +3,7 @@ stages:
   - release
   - build
 
-test amd64:
+test docker:
   image: docker:latest
   stage: test
   services:
