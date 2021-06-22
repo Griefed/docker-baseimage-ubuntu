@@ -1,6 +1,7 @@
 .git
 .gitignore
-.github
-.gitattributes
-READMETEMPLATE.md
 README.md
+.gitlab-ci.yml
+.releaserc.yml
+renovate.json
+.idea
