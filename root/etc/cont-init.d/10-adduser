@@ -3,8 +3,8 @@
 PUID=${PUID:-911}
 PGID=${PGID:-911}
 
-groupmod -o -g "$PGID" abc
-usermod -o -u "$PUID" abc
+groupmod -o -g "$PGID" grfd
+usermod -o -u "$PUID" grfd
 
 echo '
 -------------------------------------
@@ -34,8 +34,8 @@ echo '
 GID/UID
 -------------------------------------'
 echo "
-User uid:    $(id -u abc)
-User gid:    $(id -g abc)
+User uid:    $(id -u grfd)
+User gid:    $(id -g grfd)
 -------------------------------------
 "
 
@@ -55,7 +55,7 @@ Some apps might not behave correctly without this
 '
 fi
 
-chown abc:abc /app
-chown abc:abc /config
-chown abc:abc /data
-chown abc:abc /defaults
+chown grfd:grfd /app
+chown grfd:grfd /config
+chown grfd:grfd /data
+chown grfd:grfd /defaults
