@@ -8,23 +8,28 @@ usermod -o -u "$PUID" abc
 
 echo '
 -------------------------------------
+Original baseimage by
           _         ()
          | |  ___   _    __
          | | / __| | |  /  \
          | | \__ \ | | | () |
          |_| |___/ |_|  \__/
 
-
-Brought to you by linuxserver.io
+Changed to fit the needs of Griefed.de
+This fork was mainly created because I
+wanted to gather experience in writing
+my own baseimage.
+Linuxserver.io provide top quality
+images with great complexity, making
+them perfect for learning.
 -------------------------------------'
-if [[ -f /donate.txt ]]; then
-    echo '
-To support the app dev(s) visit:'
-    cat /donate.txt
-fi
+
 echo '
 To support LSIO projects visit:
 https://www.linuxserver.io/donate/
+'
+
+echo '
 -------------------------------------
 GID/UID
 -------------------------------------'
@@ -52,4 +57,5 @@ fi
 
 chown abc:abc /app
 chown abc:abc /config
+chown abc:abc /data
 chown abc:abc /defaults
