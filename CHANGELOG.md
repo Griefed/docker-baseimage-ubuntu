@@ -1,3 +1,15 @@
+## [1.1.0](https://git.griefed.de/prosper/docker-baseimage-ubuntu/compare/1.0.0...1.1.0) (2021-06-23)
+
+
+### 🚀 Features
+
+* Install nano, net-tools, tar, unzip and vi ([4822796](https://git.griefed.de/prosper/docker-baseimage-ubuntu/commit/4822796ee90408797a0a1e508b0d84f79ab2bd2d))
+
+
+### 🛠 Fixes
+
+* Spelling mistake ([11ac3cf](https://git.griefed.de/prosper/docker-baseimage-ubuntu/commit/11ac3cfa6f515a6355e875e4630b3d14a18bb717))
+
 ## [1.0.0](https://git.griefed.de/prosper/docker-baseimage-ubuntu/compare/...1.0.0) (2021-06-23)
 
 
