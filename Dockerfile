@@ -30,7 +30,7 @@ RUN \
   else \
     rm /tmp/sources.list; \
     mv \
-      /tmp/sources.list.arm; \
+      /tmp/sources.list.arm \
       /tmp/sources.list; \
   fi
 
