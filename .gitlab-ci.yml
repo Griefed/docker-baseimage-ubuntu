@@ -9,6 +9,7 @@ test docker:
   services:
     - name: docker:dind
       alias: docker
+      command: ["--experimental"]
   variables:
     project_name: $CI_PROJECT_NAME
     SEMANTIC_RELEASE_PACKAGE: $CI_PROJECT_NAME
@@ -93,6 +94,7 @@ build:
   services:
     - name: docker:dind
       alias: docker
+      command: ["--experimental"]
   variables:
     project_name: $CI_PROJECT_NAME
     SEMANTIC_RELEASE_PACKAGE: $CI_PROJECT_NAME
