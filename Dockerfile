@@ -13,8 +13,7 @@ RUN \
 
 RUN \
   mkdir \
-    /focal-rootfs \
-    /tmp && \
+    /focal-rootfs && \
   curl -o \
     /focal-rootfs.tar.gz -L \
       https://partner-images.canonical.com/core/focal/${FOCAL_RELEASE_DATE}/ubuntu-focal-core-cloudimg-${FOCAL_ARCH}-root.tar.gz && \
