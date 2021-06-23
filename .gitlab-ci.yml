@@ -52,16 +52,14 @@ test docker:
       --build-arg OVERLAY_ARCH=aarch64 .
     - docker push "$CI_REGISTRY_IMAGE:arm64-develop"
     - docker push "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:arm64-develop"
-    - docker manifest create "$CI_REGISTRY_IMAGE:develop"
-      --amend "$CI_REGISTRY_IMAGE:amd64-develop"
-      --amend "$CI_REGISTRY_IMAGE:armhf-develop"
-      --amend "$CI_REGISTRY_IMAGE:arm64-develop"
-    - docker push "$CI_REGISTRY_IMAGE:develop"
-    - docker manifest create "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:develop"
-      --amend "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:amd64-develop"
-      --amend "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:armhf-develop"
-      --amend "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:arm64-develop"
-    - docker push "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:develop"
+    - docker manifest create "$CI_REGISTRY_IMAGE:develop" "$CI_REGISTRY_IMAGE:amd64-develop" "$CI_REGISTRY_IMAGE:armhf-develop" "$CI_REGISTRY_IMAGE:arm64-develop"
+    - docker manifest annotate "$CI_REGISTRY_IMAGE:develop" "$CI_REGISTRY_IMAGE:armhf-develop" --os linux --arch arm
+    - docker manifest annotate "$CI_REGISTRY_IMAGE:develop" "$CI_REGISTRY_IMAGE:arm64-develop" --os linux --arch arm64 --variant v8
+    - docker manifest push --purge "$CI_REGISTRY_IMAGE:develop"
+    - docker manifest create "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:develop" "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:amd64-develop" "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:armhf-develop" "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:arm64-develop"
+    - docker manifest annotate "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:develop" "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:armhf-develop" --os linux --arch arm
+    - docker manifest annotate "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:develop" "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:arm64-develop" --os linux --arch arm64 --variant v8
+    - docker manifest push --purge "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:develop"
   except:
     refs:
       - tags
@@ -149,25 +147,21 @@ build:
     - docker push "$CI_REGISTRY_IMAGE:arm64-$CI_COMMIT_TAG"
     - docker push "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:arm64-latest"
     - docker push "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:arm64-$CI_COMMIT_TAG"
-    - docker manifest create "$CI_REGISTRY_IMAGE:latest"
-      --amend "$CI_REGISTRY_IMAGE:amd64-latest"
-      --amend "$CI_REGISTRY_IMAGE:armhf-latest"
-      --amend "$CI_REGISTRY_IMAGE:arm64-latest"
-    - docker push "$CI_REGISTRY_IMAGE:latest"
-    - docker manifest create "$CI_REGISTRY_IMAGE:$CI_COMMIT_TAG"
-      --amend "$CI_REGISTRY_IMAGE:amd64-$CI_COMMIT_TAG"
-      --amend "$CI_REGISTRY_IMAGE:armhf-$CI_COMMIT_TAG"
-      --amend "$CI_REGISTRY_IMAGE:arm64-$CI_COMMIT_TAG"
-    - docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_TAG"
-    - docker manifest create "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:latest"
-      --amend "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:amd64-latest"
-      --amend "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:armhf-latest"
-      --amend "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:arm64-latest"
-    - docker push "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:latest"
-    - docker manifest create "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:$CI_COMMIT_TAG"
-      --amend "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:amd64-$CI_COMMIT_TAG"
-      --amend "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:armhf-$CI_COMMIT_TAG"
-      --amend "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:arm64-$CI_COMMIT_TAG"
-    - docker push "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:$CI_COMMIT_TAG"
+    - docker manifest create "$CI_REGISTRY_IMAGE:latest" "$CI_REGISTRY_IMAGE:amd64-latest" "$CI_REGISTRY_IMAGE:armhf-latest" "$CI_REGISTRY_IMAGE:arm64-latest"
+    - docker manifest annotate "$CI_REGISTRY_IMAGE:latest" "$CI_REGISTRY_IMAGE:armhf-latest" --os linux --arch arm
+    - docker manifest annotate "$CI_REGISTRY_IMAGE:latest" "$CI_REGISTRY_IMAGE:arm64-latest" --os linux --arch arm64 --variant v8
+    - docker manifest push --purge "$CI_REGISTRY_IMAGE:latest"
+    - docker manifest create "$CI_REGISTRY_IMAGE:$CI_COMMIT_TAG" "$CI_REGISTRY_IMAGE:amd64-$CI_COMMIT_TAG" "$CI_REGISTRY_IMAGE:armhf-$CI_COMMIT_TAG" "$CI_REGISTRY_IMAGE:arm64-$CI_COMMIT_TAG"
+    - docker manifest annotate "$CI_REGISTRY_IMAGE:$CI_COMMIT_TAG" "$CI_REGISTRY_IMAGE:armhf-$CI_COMMIT_TAG" --os linux --arch arm
+    - docker manifest annotate "$CI_REGISTRY_IMAGE:$CI_COMMIT_TAG" "$CI_REGISTRY_IMAGE:arm64-$CI_COMMIT_TAG" --os linux --arch arm64 --variant v8
+    - docker manifest push --purge "$CI_REGISTRY_IMAGE:$CI_COMMIT_TAG"
+    - docker manifest create "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:latest" "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:amd64-latest" "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:armhf-latest" "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:arm64-latest"
+    - docker manifest annotate "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:latest" "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:armhf-latest" --os linux --arch arm
+    - docker manifest annotate "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:latest" "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:arm64-latest" --os linux --arch arm64 --variant v8
+    - docker manifest push --purge "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:latest"
+    - docker manifest create "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:$CI_COMMIT_TAG" "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:amd64-$CI_COMMIT_TAG" "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:armhf-$CI_COMMIT_TAG" "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:arm64-$CI_COMMIT_TAG"
+    - docker manifest annotate "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:$CI_COMMIT_TAG" "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:armhf-$CI_COMMIT_TAG" --os linux --arch arm
+    - docker manifest annotate "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:$CI_COMMIT_TAG" "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:arm64-$CI_COMMIT_TAG" --os linux --arch arm64 --variant v8
+    - docker manifest push --purge "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:$CI_COMMIT_TAG"
   only:
     - tags
