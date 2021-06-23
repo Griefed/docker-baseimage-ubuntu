@@ -12,7 +12,9 @@ RUN \
     xz
 
 RUN \
-  mkdir /focal-rootfs && \
+  mkdir \
+    /focal-rootfs \
+    /tmp && \
   curl -o \
     /focal-rootfs.tar.gz -L \
       https://partner-images.canonical.com/core/focal/${FOCAL_RELEASE_DATE}/ubuntu-focal-core-cloudimg-${FOCAL_ARCH}-root.tar.gz && \
@@ -20,9 +22,24 @@ RUN \
     /focal-rootfs.tar.gz -C \
     /focal-rootfs
 
+COPY sources.list /tmp/
+COPY sources.list.arm /tmp/
+
+RUN \
+  if [ $FOCAL_ARCH="amd64" ];then
+    rm /tmp/sources.list.arm
+  else
+    rm /tmp/sources.list
+    mv \
+      /tmp/sources.list.arm \
+      /tmp/sources.list
+  fi
+
 FROM scratch
 
 COPY --from=fetcher /focal-rootfs/ /
+
+COPY --from=fetcher /tmp/sources.list /etc/apt/
 
 ARG BUILD_DATE="PassMeTheDateMate"
 ARG VERSION="ChangeMe"
@@ -36,9 +53,10 @@ them perfect for learning."
 # s6, s6 version and s6 architecture
 ARG OVERLAY_ARCH="amd64"
 ARG OVERLAY_VERSION="v2.2.0.3"
+
 ADD https://github.com/just-containers/s6-overlay/releases/download/${OVERLAY_VERSION}/s6-overlay-${OVERLAY_ARCH}-installer /tmp/
+
 RUN chmod +x /tmp/s6-overlay-${OVERLAY_ARCH}-installer && /tmp/s6-overlay-${OVERLAY_ARCH}-installer / && rm /tmp/s6-overlay-${OVERLAY_ARCH}-installer
-COPY patch/ /tmp/patch
 
 # set environment variables
 ARG DEBIAN_FRONTEND="noninteractive"
@@ -46,17 +64,6 @@ ENV HOME="/root"
 ENV LANGUAGE="en_US.UTF-8"
 ENV LANG="en_US.UTF-8"
 ENV TERM="xterm"
-
-# copy sources
-COPY sources.list /etc/apt/
-COPY sources.list.arm /etc/apt
-
-RUN \
-  if [ $OVERLAY_ARCH="amd64" ];then
-    rm /etc/apt/sources.list.arm
-  else
-    rm /etc/apt/sources.list
-  fi
 
 RUN \
   echo "**** Ripped from Ubuntu Docker Logic ****" && \
