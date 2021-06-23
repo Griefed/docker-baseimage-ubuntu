@@ -26,13 +26,13 @@ COPY sources.list /tmp/
 COPY sources.list.arm /tmp/
 
 RUN \
-  if [ $FOCAL_ARCH="amd64" ];then
-    rm /tmp/sources.list.arm
-  else
-    rm /tmp/sources.list
+  if [[ "$FOCAL_ARCH" = "amd64" ]]; then \
+    rm /tmp/sources.list.arm; \
+  else \
+    rm /tmp/sources.list; \
     mv \
-      /tmp/sources.list.arm \
-      /tmp/sources.list
+      /tmp/sources.list.arm; \
+      /tmp/sources.list; \
   fi
 
 FROM scratch
