@@ -107,8 +107,12 @@ RUN \
   apt-get install -y \
     curl \
     gnupg \
-    patch \
-    tzdata && \
+    nano \
+    net-tools \
+    tar \
+    tzdata \
+    unzip \
+    vi && \
   echo "**** Generate locale ****" && \
   locale-gen en_US.UTF-8 && \
   echo "**** Create grfd user and make our folders ****" && \
@@ -124,7 +128,6 @@ RUN \
   alias ll="LC_COLLATE=C ls -ahl --group-directories-first --color=auto" && \
   alias ..="cd .." && \
   echo "**** Cleanup ****" && \
-  apt-get remove -y patch && \
   apt-get autoremove -y && \
   apt-get autoclean -y && \
   apt-get clean && \
