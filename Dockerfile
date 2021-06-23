@@ -127,7 +127,7 @@ RUN \
   echo "**** Cleanup ****" && \
   apt-get remove -y patch && \
   apt-get autoremove -y && \
-  apt-get autoclean -y
+  apt-get autoclean -y && \
   apt-get clean && \
   rm -rf \
     /tmp/* \
