@@ -1,3 +1,15 @@
+### [1.1.1](https://git.griefed.de/prosper/docker-baseimage-ubuntu/compare/1.1.0...1.1.1) (2021-06-25)
+
+
+### ⏩ Performance
+
+* Deactivafe force-unsafe-io. I'd rather builds take a couple of seconds longer than risking failures due to disabled safety features. ([b3fc326](https://git.griefed.de/prosper/docker-baseimage-ubuntu/commit/b3fc3262b05ec92da573dc210865e07aed644fbd))
+
+
+### 🛠 Fixes
+
+* Correctly set aliases system-wide ([12f681d](https://git.griefed.de/prosper/docker-baseimage-ubuntu/commit/12f681d64be56f68dc7360a1352ef8f4fafa8012))
+
 ## [1.1.0](https://git.griefed.de/prosper/docker-baseimage-ubuntu/compare/1.0.0...1.1.0) (2021-06-23)
 
 
