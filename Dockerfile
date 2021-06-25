@@ -80,8 +80,8 @@ RUN \
   sed -i \
     's/^exit.*/exit 0/' \
     /sbin/initctl && \
-  echo 'force-unsafe-io' \
-    > /etc/dpkg/dpkg.cfg.d/docker-apt-speedup && \
+#  echo 'force-unsafe-io' \
+#    > /etc/dpkg/dpkg.cfg.d/docker-apt-speedup && \
   echo 'DPkg::Post-Invoke { "rm -f /var/cache/apt/archives/*.deb /var/cache/apt/archives/partial/*.deb /var/cache/apt/*.bin || true"; };' \
     > /etc/apt/apt.conf.d/docker-clean && \
   echo 'APT::Update::Post-Invoke { "rm -f /var/cache/apt/archives/*.deb /var/cache/apt/archives/partial/*.deb /var/cache/apt/*.bin || true"; };' \
