@@ -2,6 +2,8 @@
 
 **A custom baseimage built with the [Ubuntu cloud image](https://partner-images.canonical.com/core/focal/) and [S6-overlay](https://github.com/just-containers/s6-overlay)..**
 
+[[_TOC_]]
+
 ---
 
 # Ubuntu Focal Fossa baseimage with s6-overlay
