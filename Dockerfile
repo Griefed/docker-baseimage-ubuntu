@@ -125,8 +125,10 @@ RUN \
     /defaults && \
   mv /usr/bin/with-contenv /usr/bin/with-contenvb && \
   echo "**** Create our bash-aliases ****" && \
-  alias ll="LC_COLLATE=C ls -ahl --group-directories-first --color=auto" && \
-  alias ..="cd .." && \
+  echo 'alias ll="LC_COLLATE=C ls -ahl --group-directories-first --color=auto"' \
+    >> /etc/bash.bashrc && \
+  echo 'alias ..="cd .."' \
+    >> /etc/bash.bashrc && \
   echo "**** Cleanup ****" && \
   apt-get autoremove -y && \
   apt-get autoclean -y && \
