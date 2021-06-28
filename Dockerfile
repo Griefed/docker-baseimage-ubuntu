@@ -112,7 +112,8 @@ RUN \
     tar \
     tzdata \
     unzip \
-    vim && \
+    vim \
+    zip && \
   echo "**** Generate locale ****" && \
   locale-gen en_US.UTF-8 && \
   echo "**** Create grfd user and make our folders ****" && \
