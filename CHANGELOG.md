@@ -1,3 +1,15 @@
+## [1.2.0](https://git.griefed.de/prosper/docker-baseimage-ubuntu/compare/1.1.1...1.2.0) (2021-06-28)
+
+
+### 🚀 Features
+
+* Add zip to per default installed packages ([abb146f](https://git.griefed.de/prosper/docker-baseimage-ubuntu/commit/abb146f44285b46fdc0dd24197765d7d8ff02bcc))
+
+
+### Other
+
+* Inform users/visitors about move to GitLab ([b08174f](https://git.griefed.de/prosper/docker-baseimage-ubuntu/commit/b08174fce7d1389c5624e7ddeb5fb5219d79c5be))
+
 ### [1.1.1](https://git.griefed.de/prosper/docker-baseimage-ubuntu/compare/1.1.0...1.1.1) (2021-06-25)
 
 
