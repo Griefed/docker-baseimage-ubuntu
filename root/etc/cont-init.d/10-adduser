@@ -7,22 +7,50 @@ groupmod -o -g "$PGID" grfd
 usermod -o -u "$PUID" grfd
 
 echo '
--------------------------------------
-Original baseimage by
-          _         ()
-         | |  ___   _    __
-         | | / __| | |  /  \
-         | | \__ \ | | | () |
-         |_| |___/ |_|  \__/
+---------------------------------------------------------------------
+                  Original baseimage by
+                    _         ()
+                    | |  ___   _    __
+                    | | / __| | |  /  \
+                    | | \__ \ | | | () |
+                    |_| |___/ |_|  \__/
 
-Changed to fit the needs of Griefed.de
-This fork was mainly created because I
-wanted to gather experience in writing
-my own baseimage.
-Linuxserver.io provide top quality
-images with great complexity, making
-them perfect for learning.
--------------------------------------'
+Changed to fit the needs of Griefed.de. This fork was mainly created
+because I wanted to gather experience in writing my own baseimage.
+Linuxserver.io provide top quality images with great complexity,
+making them perfect for learning.
+
+                -:                      ._~
+               .|=| ,,-_ \l||||||^~\ ;-~t=t`
+               :t===t++|\ _-;;;;;- |+t=====_
+             , ^t====I~*.          :_\|t===I|\
+           -^t|^t|\-`                  .  r^ |t|*.
+         -|t~  `.                             :\+I*
+        ^t^:                                    `~t|
+      _++\.                                      -^tI\;; :`
+:~||+ttt=^  t=vftf                               .|======I
+ .r=====|. YWQDo 1WV{eq}Yky}4htoh1}YL+zsj}zff     .|====r.
+   \t==|`  kXDQD%Dqjv*\vj;tt-^1^-=t;jv\_vj;t=}t-   .|=t+_
+   ^t|j.   kDBBM@@Kv=fftt}++f+j+v|4n|^IIl^t~~|~l    `\ =|.
+  ,++:.     \h _%                 [-                  .It;
+  -=|       ;f- o                 f;                   ^=\
+   =|       ;f\,]                 +      ````....      ~=\
+  _=|.      ;= \z               :zynf   %SOX6%C0q=     ^=\
+  :++        v ;[               *   ^   a6%CpakhY+   .`It-
+   ^=\\`     |; }             fu{f1v=t+ n%Cda4hos~  .^I+|.
+   ;It=|:    I- }             GPZ9%Cpak=Cg89CCda4= .|==tl
+   \t===I,  :+\,v   .```..... ok4hozyu{\fekhYszx[\ l=====|,
+ `|======I` :|:\f   GSKgU9CCqlGWKg89%Cdt%SOX6%C0qv\=ttt+j|l:
+ ,;;--\++|  ,| ;t   Z6%C0ekhYrZ6%C0ekhY+a6%CpekhYt I+\.
+        ^t^ ,~--+  `0C0qkhYoz;a%Cqk4Yoz~. :::,,,-^t|
+         -|t^~_*I  -OXU%C0qk4 Kg89%Cda4=   .` :\tI_
+          .-|t| ^^  sL{}fv=t+:}L[}fv=tt~-\|t^|t|_.
+             :\|j===t|\*           ._~|t====^
+                ;=====t+j _-;;;;;- \|++t====:
+                 +=t^_;*\~^||||||^~\ - ,_|tt.
+                 \ `                      `_
+
+---------------------------------------------------------------------'
 
 echo '
 To support LSIO projects visit:
