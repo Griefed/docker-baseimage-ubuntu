@@ -1,3 +1,21 @@
+## [1.3.0](https://git.griefed.de/prosper/docker-baseimage-ubuntu/compare/1.2.0...1.3.0) (2021-07-09)
+
+
+### 🦊 CI/CD
+
+* Create release on GitHub after tag mirror from GitLab ([a5307eb](https://git.griefed.de/prosper/docker-baseimage-ubuntu/commit/a5307ebd7f41fd9b77d2fb739389d13155c956a1))
+* Move Docker build for GitHub container registry to GitLab ([d94b9f7](https://git.griefed.de/prosper/docker-baseimage-ubuntu/commit/d94b9f7320f3c1102d229ad72059b2e948bf5aea))
+
+
+### 🚀 Features
+
+* Add additional alias for cd .. ([9f689aa](https://git.griefed.de/prosper/docker-baseimage-ubuntu/commit/9f689aa470b66580408e628688974718bb517e1f))
+
+
+### Other
+
+* Add some flavour ([c951efb](https://git.griefed.de/prosper/docker-baseimage-ubuntu/commit/c951efb48446692bfbdf0601b05fea9f090197d7))
+
 ## [1.2.0](https://git.griefed.de/prosper/docker-baseimage-ubuntu/compare/1.1.1...1.2.0) (2021-06-28)
 
 
