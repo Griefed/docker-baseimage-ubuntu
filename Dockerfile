@@ -130,6 +130,8 @@ RUN \
     >> /etc/bash.bashrc && \
   echo 'alias ..="cd .."' \
     >> /etc/bash.bashrc && \
+  echo 'alias cd..="cd .."' \
+    >> /etc/bash.bashrc && \
   echo "**** Cleanup ****" && \
   apt-get autoremove -y && \
   apt-get autoclean -y && \
