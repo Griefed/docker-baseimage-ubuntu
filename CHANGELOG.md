@@ -1,3 +1,10 @@
+## [1.4.0](https://git.griefed.de/prosper/docker-baseimage-ubuntu/compare/1.3.0...1.4.0) (2021-07-10)
+
+
+### 🚀 Features
+
+* Add git to baseimage ([c8a834d](https://git.griefed.de/prosper/docker-baseimage-ubuntu/commit/c8a834d91616dcce18f802a9a24a8bf6e47e4230))
+
 ## [1.3.0](https://git.griefed.de/prosper/docker-baseimage-ubuntu/compare/1.2.0...1.3.0) (2021-07-09)
 
 
