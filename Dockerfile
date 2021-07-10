@@ -106,6 +106,7 @@ RUN \
   echo "**** Install packages ****" && \
   apt-get install -y \
     curl \
+    git \
     gnupg \
     nano \
     net-tools \
