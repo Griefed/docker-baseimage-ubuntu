@@ -4,10 +4,10 @@ stages:
   - build
 
 test docker:
-  image: griefed/gitlab-ci-cd:1.0.3
+  image: griefed/gitlab-ci-cd:1.0.4
   stage: test
   services:
-    - name: griefed/gitlab-ci-cd:1.0.3
+    - name: griefed/gitlab-ci-cd:1.0.4
       alias: docker
       command: ["--experimental"]
   variables:
@@ -34,20 +34,6 @@ test docker:
     - docker push "$CI_REGISTRY_IMAGE:amd64-develop"
     - docker push "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:amd64-develop"
     - docker push "ghcr.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:amd64-develop"
-    - echo "**** Build armhf ****"
-    - docker build
-      --tag "$CI_REGISTRY_IMAGE:armhf-develop"
-      --tag "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:armhf-develop"
-      --tag "ghcr.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:armhf-develop"
-      --build-arg FOCAL_ARCH=armhf
-      --build-arg FOCAL_RELEASE_DATE="$FOCAL_RELEASE_DATE"
-      --build-arg BUILD_DATE="$CI_PIPELINE_CREATED_AT"
-      --build-arg VERSION="$CI_COMMIT_SHORT_SHA"
-      --build-arg OVERLAY_VERSION="$OVERLAY_VERSION"
-      --build-arg OVERLAY_ARCH=arm .
-    - docker push "$CI_REGISTRY_IMAGE:armhf-develop"
-    - docker push "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:armhf-develop"
-    - docker push "ghcr.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:armhf-develop"
     - echo "**** Build arm64 ****"
     - docker build
       --tag "$CI_REGISTRY_IMAGE:arm64-develop"
@@ -63,18 +49,15 @@ test docker:
     - docker push "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:arm64-develop"
     - docker push "ghcr.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:arm64-develop"
     - echo "**** Create GitLab manifest ****"
-    - docker manifest create "$CI_REGISTRY_IMAGE:develop" "$CI_REGISTRY_IMAGE:amd64-develop" "$CI_REGISTRY_IMAGE:armhf-develop" "$CI_REGISTRY_IMAGE:arm64-develop"
-    - docker manifest annotate "$CI_REGISTRY_IMAGE:develop" "$CI_REGISTRY_IMAGE:armhf-develop" --os linux --arch arm
+    - docker manifest create "$CI_REGISTRY_IMAGE:develop" "$CI_REGISTRY_IMAGE:amd64-develop" "$CI_REGISTRY_IMAGE:arm64-develop"
     - docker manifest annotate "$CI_REGISTRY_IMAGE:develop" "$CI_REGISTRY_IMAGE:arm64-develop" --os linux --arch arm64 --variant v8
     - docker manifest push --purge "$CI_REGISTRY_IMAGE:develop"
     - echo "**** Create DockerHub manifest ****"
-    - docker manifest create "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:develop" "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:amd64-develop" "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:armhf-develop" "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:arm64-develop"
-    - docker manifest annotate "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:develop" "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:armhf-develop" --os linux --arch arm
+    - docker manifest create "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:develop" "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:amd64-develop" "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:arm64-develop"
     - docker manifest annotate "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:develop" "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:arm64-develop" --os linux --arch arm64 --variant v8
     - docker manifest push --purge "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:develop"
     - echo "**** Create GitHub manifest ****"
-    - docker manifest create "ghcr.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:develop" "ghcr.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:amd64-develop" "ghcr.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:armhf-develop" "ghcr.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:arm64-develop"
-    - docker manifest annotate "ghcr.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:develop" "ghcr.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:armhf-develop" --os linux --arch arm
+    - docker manifest create "ghcr.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:develop" "ghcr.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:amd64-develop" "ghcr.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:arm64-develop"
     - docker manifest annotate "ghcr.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:develop" "ghcr.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:arm64-develop" --os linux --arch arm64 --variant v8
     - docker manifest push --purge "ghcr.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:develop"
   except:
@@ -86,9 +69,9 @@ test docker:
 release:
   needs: ['test docker']
   stage: release
-  image: griefed/gitlab-ci-cd:1.0.3
+  image: griefed/gitlab-ci-cd:1.0.4
   services:
-    - name: griefed/gitlab-ci-cd:1.0.3
+    - name: griefed/gitlab-ci-cd:1.0.4
       alias: docker
   variables:
     project_name: $CI_PROJECT_NAME
@@ -104,10 +87,10 @@ release:
       - $CI_COMMIT_TITLE =~ /^RELEASE:.+$/
 
 build:
-  image: griefed/gitlab-ci-cd:1.0.3
+  image: griefed/gitlab-ci-cd:1.0.4
   stage: build
   services:
-    - name: griefed/gitlab-ci-cd:1.0.3
+    - name: griefed/gitlab-ci-cd:1.0.4
       alias: docker
       command: ["--experimental"]
   variables:
@@ -140,26 +123,6 @@ build:
     - docker push "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:amd64-$CI_COMMIT_TAG"
     - docker push "ghcr.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:amd64-latest"
     - docker push "ghcr.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:amd64-$CI_COMMIT_TAG"
-    - echo "**** Build armhf ****"
-    - docker build
-      --tag "$CI_REGISTRY_IMAGE:armhf-latest"
-      --tag "$CI_REGISTRY_IMAGE:armhf-$CI_COMMIT_TAG"
-      --tag "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:armhf-latest"
-      --tag "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:armhf-$CI_COMMIT_TAG"
-      --tag "ghcr.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:armhf-latest"
-      --tag "ghcr.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:armhf-$CI_COMMIT_TAG"
-      --build-arg FOCAL_ARCH=armhf
-      --build-arg FOCAL_RELEASE_DATE="$FOCAL_RELEASE_DATE"
-      --build-arg BUILD_DATE="$CI_PIPELINE_CREATED_AT"
-      --build-arg VERSION="$CI_COMMIT_TAG"
-      --build-arg OVERLAY_VERSION="$OVERLAY_VERSION"
-      --build-arg OVERLAY_ARCH=arm .
-    - docker push "$CI_REGISTRY_IMAGE:armhf-latest"
-    - docker push "$CI_REGISTRY_IMAGE:armhf-$CI_COMMIT_TAG"
-    - docker push "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:armhf-latest"
-    - docker push "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:armhf-$CI_COMMIT_TAG"
-    - docker push "ghcr.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:armhf-latest"
-    - docker push "ghcr.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:armhf-$CI_COMMIT_TAG"
     - echo "**** Build arm64 ****"
     - docker build
       --tag "$CI_REGISTRY_IMAGE:arm64-latest"
@@ -180,31 +143,18 @@ build:
     - docker push "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:arm64-$CI_COMMIT_TAG"
     - docker push "ghcr.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:arm64-latest"
     - docker push "ghcr.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:arm64-$CI_COMMIT_TAG"
-    - echo "**** Create GitLab manifest ****"
-    - docker manifest create "$CI_REGISTRY_IMAGE:latest" "$CI_REGISTRY_IMAGE:amd64-latest" "$CI_REGISTRY_IMAGE:armhf-latest" "$CI_REGISTRY_IMAGE:arm64-latest"
-    - docker manifest annotate "$CI_REGISTRY_IMAGE:latest" "$CI_REGISTRY_IMAGE:armhf-latest" --os linux --arch arm
-    - docker manifest annotate "$CI_REGISTRY_IMAGE:latest" "$CI_REGISTRY_IMAGE:arm64-latest" --os linux --arch arm64 --variant v8
-    - docker manifest push --purge "$CI_REGISTRY_IMAGE:latest"
-    - docker manifest create "$CI_REGISTRY_IMAGE:$CI_COMMIT_TAG" "$CI_REGISTRY_IMAGE:amd64-$CI_COMMIT_TAG" "$CI_REGISTRY_IMAGE:armhf-$CI_COMMIT_TAG" "$CI_REGISTRY_IMAGE:arm64-$CI_COMMIT_TAG"
-    - docker manifest annotate "$CI_REGISTRY_IMAGE:$CI_COMMIT_TAG" "$CI_REGISTRY_IMAGE:armhf-$CI_COMMIT_TAG" --os linux --arch arm
-    - docker manifest annotate "$CI_REGISTRY_IMAGE:$CI_COMMIT_TAG" "$CI_REGISTRY_IMAGE:arm64-$CI_COMMIT_TAG" --os linux --arch arm64 --variant v8
-    - docker manifest push --purge "$CI_REGISTRY_IMAGE:$CI_COMMIT_TAG"
     - echo "**** Create DockerHub manifest ****"
-    - docker manifest create "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:latest" "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:amd64-latest" "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:armhf-latest" "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:arm64-latest"
-    - docker manifest annotate "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:latest" "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:armhf-latest" --os linux --arch arm
+    - docker manifest create "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:latest" "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:amd64-latest" "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:arm64-latest"
     - docker manifest annotate "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:latest" "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:arm64-latest" --os linux --arch arm64 --variant v8
     - docker manifest push --purge "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:latest"
-    - docker manifest create "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:$CI_COMMIT_TAG" "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:amd64-$CI_COMMIT_TAG" "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:armhf-$CI_COMMIT_TAG" "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:arm64-$CI_COMMIT_TAG"
-    - docker manifest annotate "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:$CI_COMMIT_TAG" "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:armhf-$CI_COMMIT_TAG" --os linux --arch arm
+    - docker manifest create "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:$CI_COMMIT_TAG" "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:amd64-$CI_COMMIT_TAG" "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:arm64-$CI_COMMIT_TAG"
     - docker manifest annotate "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:$CI_COMMIT_TAG" "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:arm64-$CI_COMMIT_TAG" --os linux --arch arm64 --variant v8
     - docker manifest push --purge "index.docker.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:$CI_COMMIT_TAG"
     - echo "**** Create GitHub manifest ****"
-    - docker manifest create "ghcr.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:latest" "ghcr.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:amd64-latest" "ghcr.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:armhf-latest" "ghcr.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:arm64-latest"
-    - docker manifest annotate "ghcr.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:latest" "ghcr.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:armhf-latest" --os linux --arch arm
+    - docker manifest create "ghcr.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:latest" "ghcr.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:amd64-latest" "ghcr.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:arm64-latest"
     - docker manifest annotate "ghcr.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:latest" "ghcr.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:arm64-latest" --os linux --arch arm64 --variant v8
     - docker manifest push --purge "ghcr.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:latest"
-    - docker manifest create "ghcr.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:$CI_COMMIT_TAG" "ghcr.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:amd64-$CI_COMMIT_TAG" "ghcr.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:armhf-$CI_COMMIT_TAG" "ghcr.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:arm64-$CI_COMMIT_TAG"
-    - docker manifest annotate "ghcr.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:$CI_COMMIT_TAG" "ghcr.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:armhf-$CI_COMMIT_TAG" --os linux --arch arm
+    - docker manifest create "ghcr.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:$CI_COMMIT_TAG" "ghcr.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:amd64-$CI_COMMIT_TAG" "ghcr.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:arm64-$CI_COMMIT_TAG"
     - docker manifest annotate "ghcr.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:$CI_COMMIT_TAG" "ghcr.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:arm64-$CI_COMMIT_TAG" --os linux --arch arm64 --variant v8
     - docker manifest push --purge "ghcr.io/$DOCKERHUB_USER/$DOCKERHUB_REPO:$CI_COMMIT_TAG"
   only:
