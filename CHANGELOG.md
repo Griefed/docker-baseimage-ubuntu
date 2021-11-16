@@ -1,3 +1,19 @@
+## [2.0.0](https://git.griefed.de/prosper/docker-baseimage-ubuntu/compare/1.4.0...2.0.0) (2021-11-16)
+
+
+### 🦊 CI/CD
+
+* Fix breaking type ([fce0211](https://git.griefed.de/prosper/docker-baseimage-ubuntu/commit/fce0211688ec293d780b80a3ce80c9bcc259f6f2))
+* Fix typo in image name ([a116507](https://git.griefed.de/prosper/docker-baseimage-ubuntu/commit/a116507e2e86060e3aacbff67007fdb4341811a0))
+* Switch image to gitlab-ci-cd which provides for all jobs ([7f24150](https://git.griefed.de/prosper/docker-baseimage-ubuntu/commit/7f24150ff74b30a072615e3d29dffa69bff78d4b))
+
+
+### Other
+
+* Add GitLab issue templates ([97c9498](https://git.griefed.de/prosper/docker-baseimage-ubuntu/commit/97c94983009b1cd3b3790dfd9c21d2c1293f5747))
+* **deps:** update griefed/gitlab-ci-cd docker tag to v1.0.1 ([613a6f9](https://git.griefed.de/prosper/docker-baseimage-ubuntu/commit/613a6f9a96d6655afcff3f0d1d63d6ef497a5d10))
+* **deps:** update griefed/gitlab-ci-cd docker tag to v1.0.3 ([ead7ca4](https://git.griefed.de/prosper/docker-baseimage-ubuntu/commit/ead7ca4556f6ffde386d6f16b0b21e014e07c908))
+
 ## [1.4.0](https://git.griefed.de/prosper/docker-baseimage-ubuntu/compare/1.3.0...1.4.0) (2021-07-10)
 
 
