@@ -1,3 +1,15 @@
+## [2.1.0](https://git.griefed.de/prosper/docker-baseimage-ubuntu/compare/2.0.0...2.1.0) (2022-01-21)
+
+
+### 🚀 Features
+
+* Add jq to image ([9c6e218](https://git.griefed.de/prosper/docker-baseimage-ubuntu/commit/9c6e2180cd14c46b5e791f1e60e5ebc986a84748))
+
+
+### Other
+
+* **deps:** update alpine docker tag to v3.15 ([bff0edb](https://git.griefed.de/prosper/docker-baseimage-ubuntu/commit/bff0edb09e97f5ed848410bd2cdd6308dcd63e19))
+
 ## [2.0.0](https://git.griefed.de/prosper/docker-baseimage-ubuntu/compare/1.4.0...2.0.0) (2021-11-16)
 
 
