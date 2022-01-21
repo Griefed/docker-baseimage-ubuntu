@@ -108,6 +108,7 @@ RUN \
     curl \
     git \
     gnupg \
+    jq \
     nano \
     net-tools \
     tar \
