@@ -1,3 +1,16 @@
+### [2.1.1](https://git.griefed.de/prosper/docker-baseimage-ubuntu/compare/2.1.0...2.1.1) (2022-01-23)
+
+
+### 👀 Reverts
+
+* Build for armv7 again thanks to [@djmaze](https://git.griefed.de/djmaze) and their dind-image-with-armhf available at https://github.com/djmaze/dind-image-with-armhf ([33639c7](https://git.griefed.de/prosper/docker-baseimage-ubuntu/commit/33639c7c031eb9d21d092b7354f910d50af95f27))
+
+
+### Other
+
+* **deps:** update griefed/gitlab-ci-cd docker tag to v1.1.0 ([054e20a](https://git.griefed.de/prosper/docker-baseimage-ubuntu/commit/054e20af9053627d9265907b01780bba453af36b))
+* **deps:** update griefed/gitlab-ci-cd docker tag to v2 ([8769942](https://git.griefed.de/prosper/docker-baseimage-ubuntu/commit/8769942d0825e55e994243e217cd7181542639cc))
+
 ## [2.1.0](https://git.griefed.de/prosper/docker-baseimage-ubuntu/compare/2.0.0...2.1.0) (2022-01-21)
 
 
