@@ -4,10 +4,10 @@ stages:
   - build
 
 test docker:
-  image: griefed/gitlab-ci-cd:1.0.4
+  image: griefed/gitlab-ci-cd:1.1.0
   stage: test
   services:
-    - name: griefed/gitlab-ci-cd:1.0.4
+    - name: griefed/gitlab-ci-cd:1.1.0
       alias: docker
       command: ["--experimental"]
   variables:
@@ -69,9 +69,9 @@ test docker:
 release:
   needs: ['test docker']
   stage: release
-  image: griefed/gitlab-ci-cd:1.0.4
+  image: griefed/gitlab-ci-cd:1.1.0
   services:
-    - name: griefed/gitlab-ci-cd:1.0.4
+    - name: griefed/gitlab-ci-cd:1.1.0
       alias: docker
   variables:
     project_name: $CI_PROJECT_NAME
@@ -87,10 +87,10 @@ release:
       - $CI_COMMIT_TITLE =~ /^RELEASE:.+$/
 
 build:
-  image: griefed/gitlab-ci-cd:1.0.4
+  image: griefed/gitlab-ci-cd:1.1.0
   stage: build
   services:
-    - name: griefed/gitlab-ci-cd:1.0.4
+    - name: griefed/gitlab-ci-cd:1.1.0
       alias: docker
       command: ["--experimental"]
   variables:
