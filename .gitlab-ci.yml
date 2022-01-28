@@ -14,7 +14,7 @@ test docker:
     project_name: $CI_PROJECT_NAME
     SEMANTIC_RELEASE_PACKAGE: $CI_PROJECT_NAME
     FOCAL_RELEASE_DATE: "current"
-    OVERLAY_VERSION: "v2.2.0.3"
+    OVERLAY_VERSION: "v3.0.0.2"
   before_script:
     - docker login -u "$DOCKERHUB_USER" -p "$DOCKERHUB_TOKEN" docker.io
     - docker login -u "$DOCKERHUB_USER" -p "$GITHUB_TOKEN" ghcr.io
@@ -102,7 +102,7 @@ build:
     project_name: $CI_PROJECT_NAME
     SEMANTIC_RELEASE_PACKAGE: $CI_PROJECT_NAME
     FOCAL_RELEASE_DATE: "current"
-    OVERLAY_VERSION: "v2.2.0.3"
+    OVERLAY_VERSION: "v3.0.0.2"
   before_script:
     - docker login -u "$DOCKERHUB_USER" -p "$DOCKERHUB_TOKEN" docker.io
     - docker login -u "$DOCKERHUB_USER" -p "$GITHUB_TOKEN" ghcr.io
