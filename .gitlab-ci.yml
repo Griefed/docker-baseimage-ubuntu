@@ -201,6 +201,8 @@ Check Packages:on-schedule:
         sort -o /tmp/$CI_PROJECT_PATH/package_versions_old.txt  /tmp/$CI_PROJECT_PATH/package_versions_old.txt && \
         chmod 777 /tmp/$CI_PROJECT_PATH/package_versions_old.txt' && \
       
+      ls -ahl /tmp/$CI_PROJECT_PATH && \
+
       # Get checksum of old packages
       OLD_CHECKSUM=$(md5sum /tmp/$CI_PROJECT_PATH/package_versions_old.txt | cut -f1 -d" ") && \
       
