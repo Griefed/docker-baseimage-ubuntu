@@ -179,6 +179,7 @@ Check Packages:on-schedule:
       docker image rm -f $DOCKERHUB_USER/$DOCKERHUB_REPO:latest
       docker image rm -f localbuild
       rm -rf /tmp/$CI_PROJECT_PATH
+      rm -f /tmp/package_versions*
       mkdir -p /tmp/$CI_PROJECT_PATH
   script:
     - |-
@@ -190,24 +191,22 @@ Check Packages:on-schedule:
       docker build --tag localbuild . && \
       
       # Get packages from newly build local image
-      docker run --rm --entrypoint /bin/sh -v /tmp/$CI_PROJECT_PATH:/tmp/$CI_PROJECT_PATH localbuild -c '\
-        apt list -qq --installed > /tmp/$CI_PROJECT_PATH/package_versions_new.txt && \
-        sort -o /tmp/$CI_PROJECT_PATH/package_versions_new.txt  /tmp/$CI_PROJECT_PATH/package_versions_new.txt && \
-        chmod 777 /tmp/$CI_PROJECT_PATH/package_versions_new.txt' && \
+      docker run --rm --entrypoint /bin/sh -v /tmp:/tmp localbuild -c '\
+        apt list -qq --installed > /tmp/package_versions_new.txt && \
+        sort -o /tmp/package_versions_new.txt  /tmp/package_versions_new.txt && \
+        chmod 777 /tmp/package_versions_new.txt' && \
       
       # Gather package information from latest build
-      docker run --rm --entrypoint /bin/sh -v /tmp/$CI_PROJECT_PATH:/tmp/$CI_PROJECT_PATH $DOCKERHUB_USER/$DOCKERHUB_REPO:latest -c '\
-        apt list -qq --installed > /tmp/$CI_PROJECT_PATH/package_versions_old.txt && \
-        sort -o /tmp/$CI_PROJECT_PATH/package_versions_old.txt  /tmp/$CI_PROJECT_PATH/package_versions_old.txt && \
-        chmod 777 /tmp/$CI_PROJECT_PATH/package_versions_old.txt' && \
-      
-      ls -ahl /tmp/$CI_PROJECT_PATH && \
+      docker run --rm --entrypoint /bin/sh -v /tmp:/tmp $DOCKERHUB_USER/$DOCKERHUB_REPO:latest -c '\
+        apt list -qq --installed > /tmp/package_versions_old.txt && \
+        sort -o /tmp/package_versions_old.txt  /tmp/package_versions_old.txt && \
+        chmod 777 /tmp/package_versions_old.txt' && \
 
       # Get checksum of old packages
-      OLD_CHECKSUM=$(md5sum /tmp/$CI_PROJECT_PATH/package_versions_old.txt | cut -f1 -d" ") && \
+      OLD_CHECKSUM=$(md5sum /tmp/package_versions_old.txt | cut -f1 -d" ") && \
       
       # Get checksum of new packages
-      NEW_CHECKSUM=$(md5sum /tmp/$CI_PROJECT_PATH/package_versions_new.txt | cut -f1 -d" ") && \
+      NEW_CHECKSUM=$(md5sum /tmp/package_versions_new.txt | cut -f1 -d" ") && \
       
       # If new checksum is not the same as old checksum, we have new versions
       if [ "${OLD_CHECKSUM}" != "${NEW_CHECKSUM}" ]; then
@@ -216,13 +215,12 @@ Check Packages:on-schedule:
         git --git-dir /tmp/$CI_PROJECT_PATH.git checkout -f master && \
       
         # Copy the new package versions list to repository
-        cp -f /tmp/$CI_PROJECT_PATH/package_versions_new.txt /tmp/$CI_PROJECT_PATH/package_versions.txt && \
-        rm -f /tmp/$CI_PROJECT_PATH/package_versions_new.txt /tmp/$CI_PROJECT_PATH/package_versions_old.txt && \
+        cp -f /tmp/package_versions_new.txt /tmp/$CI_PROJECT_PATH/package_versions.txt && \
         
         wait && \
       
         # Add and commit new file to repository
-        git add /tmp/$CI_PROJECT_PATH/package_versions.txt && \
+        git add package_versions.txt && \
         git commit -m 'build: Update installed packages.' && \
       
         # Push the changes to the remote
