@@ -3,18 +3,21 @@ stages:
   - release
   - build
 
+services:
+  - name: griefed/gitlab-ci-cd:2.0.0
+    alias: docker
+    command: ["--experimental"]
+
+image: griefed/gitlab-ci-cd:2.0.0
+
+variables:
+  project_name: $CI_PROJECT_NAME
+  SEMANTIC_RELEASE_PACKAGE: $CI_PROJECT_NAME
+  FOCAL_RELEASE_DATE: "current"
+  OVERLAY_VERSION: "v2.2.0.3"
+
 test docker:
-  image: griefed/gitlab-ci-cd:2.0.0
   stage: test
-  services:
-    - name: griefed/gitlab-ci-cd:2.0.0
-      alias: docker
-      command: ["--experimental"]
-  variables:
-    project_name: $CI_PROJECT_NAME
-    SEMANTIC_RELEASE_PACKAGE: $CI_PROJECT_NAME
-    FOCAL_RELEASE_DATE: "current"
-    OVERLAY_VERSION: "v2.2.0.3"
   before_script:
     - docker login -u "$DOCKERHUB_USER" -p "$DOCKERHUB_TOKEN" docker.io
     - docker login -u "$DOCKERHUB_USER" -p "$GITHUB_TOKEN" ghcr.io
@@ -74,13 +77,6 @@ test docker:
 release:
   needs: ['test docker']
   stage: release
-  image: griefed/gitlab-ci-cd:2.0.0
-  services:
-    - name: griefed/gitlab-ci-cd:2.0.0
-      alias: docker
-  variables:
-    project_name: $CI_PROJECT_NAME
-    SEMANTIC_RELEASE_PACKAGE: $CI_PROJECT_NAME
   script:
     - npx semantic-release
   only:
@@ -92,17 +88,7 @@ release:
       - '$CI_COMMIT_TITLE =~ /^RELEASE:.+$/ || $CI_PIPELINE_SOURCE == "schedule"'
 
 build:
-  image: griefed/gitlab-ci-cd:2.0.0
   stage: build
-  services:
-    - name: griefed/gitlab-ci-cd:2.0.0
-      alias: docker
-      command: ["--experimental"]
-  variables:
-    project_name: $CI_PROJECT_NAME
-    SEMANTIC_RELEASE_PACKAGE: $CI_PROJECT_NAME
-    FOCAL_RELEASE_DATE: "current"
-    OVERLAY_VERSION: "v2.2.0.3"
   before_script:
     - docker login -u "$DOCKERHUB_USER" -p "$DOCKERHUB_TOKEN" docker.io
     - docker login -u "$DOCKERHUB_USER" -p "$GITHUB_TOKEN" ghcr.io
