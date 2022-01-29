@@ -69,7 +69,7 @@ test docker:
     refs:
       - tags
     variables:
-      - "$CI_COMMIT_TITLE =~ /^RELEASE:.+$/ && $CI_PIPELINE_SOURCE == 'schedule'"
+      - '$CI_COMMIT_TITLE =~ /^RELEASE:.+$/ || $CI_PIPELINE_SOURCE == "schedule"'
 
 release:
   needs: ['test docker']
@@ -89,7 +89,7 @@ release:
     refs:
       - tags
     variables:
-      - "$CI_COMMIT_TITLE =~ /^RELEASE:.+$/ && $CI_PIPELINE_SOURCE == 'schedule'"
+      - '$CI_COMMIT_TITLE =~ /^RELEASE:.+$/ || $CI_PIPELINE_SOURCE == "schedule"'
 
 build:
   image: griefed/gitlab-ci-cd:2.0.0
