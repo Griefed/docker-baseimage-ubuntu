@@ -202,6 +202,8 @@ Check Packages:on-schedule:
         sort -o /tmp/package_versions_old.txt  /tmp/package_versions_old.txt && \
         chmod 777 /tmp/package_versions_old.txt' && \
 
+      ls -ahl /tmp && \
+
       # Get checksum of old packages
       OLD_CHECKSUM=$(md5sum /tmp/package_versions_old.txt | cut -f1 -d" ") && \
       
