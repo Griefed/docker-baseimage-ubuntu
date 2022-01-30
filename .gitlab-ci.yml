@@ -196,6 +196,7 @@ Check Packages:on-schedule:
       cd /tmp/$CI_PROJECT_PATH && \
       
       if [ ! -s "package-versions.txt" ];then
+        echo "No package_versions.txt present. Creating..."
       
         # Gather package information from latest build
         docker run --rm --entrypoint /bin/sh -v /tmp/$CI_PROJECT_PATH:/tmp $DOCKERHUB_USER/$DOCKERHUB_REPO:latest -c '\
@@ -213,12 +214,14 @@ Check Packages:on-schedule:
         git commit -m 'chore: Add list of package versions.' && \
       
         # Push the changes to the remote
-        git push "https://$GIT_USER:$GITLAB_TOKEN@$CI_SERVER_HOST/$CI_PROJECT_PATH.git" --all && \
+        echo "https://***:***@$CI_SERVER_HOST/$CI_PROJECT_PATH.git"
+        git push "https://$GIT_USER:$GITLAB_TOKEN@$CI_SERVER_HOST/$CI_PROJECT_PATH".git --all && \
       
         # Nice
         echo "package_versions.txt added."        
       
       elif [ -s "package-versions.txt" ];then
+        echo "package_versions.txt present. Comapring..."
       
         # Build local image for new package versions list
         docker build --no-cache --tag $DOCKERHUB_REPO . && \
