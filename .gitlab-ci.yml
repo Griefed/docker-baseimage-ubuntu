@@ -195,7 +195,7 @@ Check Packages:on-schedule:
       git clone $CI_PROJECT_URL.git /tmp/$CI_PROJECT_PATH && \
       cd /tmp/$CI_PROJECT_PATH && \
       
-      if [ ! -s "package-versions.txt" ];then
+      if [ ! -s "package_versions.txt" ];then
         echo "No package_versions.txt present. Creating..."
       
         # Gather package information from latest build
@@ -220,7 +220,7 @@ Check Packages:on-schedule:
         # Nice
         echo "package_versions.txt added."        
       
-      elif [ -s "package-versions.txt" ];then
+      elif [ -s "package_versions.txt" ];then
         echo "package_versions.txt present. Comapring..."
       
         # Build local image for new package versions list
