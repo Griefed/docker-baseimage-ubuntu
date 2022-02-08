@@ -1,3 +1,19 @@
+### [2.1.2](https://git.griefed.de/prosper/docker-baseimage-ubuntu/compare/2.1.1...2.1.2) (2022-02-08)
+
+
+### 🦊 CI/CD
+
+* Update installed packages. ([a2ed0c9](https://git.griefed.de/prosper/docker-baseimage-ubuntu/commit/a2ed0c9a61055397be74f2fa7a4acb979790c388))
+* Check packages for updates and trigger pack release when new packages are available ([3aaeebc](https://git.griefed.de/prosper/docker-baseimage-ubuntu/commit/3aaeebcc068397f9a031806d9a7509f8b0a1dd9a))
+* Correctly checkout repository ([749926f](https://git.griefed.de/prosper/docker-baseimage-ubuntu/commit/749926ff24d8db3935c2de4bd596a0fc35a50105))
+* Move services, image and variables to global ([7e864c2](https://git.griefed.de/prosper/docker-baseimage-ubuntu/commit/7e864c2bc61a4ea2f3f0b9db2947a9b014d2364b))
+* Rework package versions job ([f32b3c9](https://git.griefed.de/prosper/docker-baseimage-ubuntu/commit/f32b3c973cb19331af93bfefeedcc335da33b087))
+
+
+### Other
+
+* Add list of package versions. ([29f2f3c](https://git.griefed.de/prosper/docker-baseimage-ubuntu/commit/29f2f3ce355dd10602bbd9f615bc3dbb17e26b66))
+
 ### [2.1.1](https://git.griefed.de/prosper/docker-baseimage-ubuntu/compare/2.1.0...2.1.1) (2022-01-23)
 
 
