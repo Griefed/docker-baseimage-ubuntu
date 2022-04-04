@@ -4,11 +4,11 @@ stages:
   - build
 
 services:
-  - name: griefed/gitlab-ci-cd:2.0.4
+  - name: griefed/gitlab-ci-cd:2.0.5
     alias: docker
     command: ["--experimental"]
 
-image: griefed/gitlab-ci-cd:2.0.4
+image: griefed/gitlab-ci-cd:2.0.5
 
 variables:
   project_name: $CI_PROJECT_NAME
