@@ -1,3 +1,15 @@
+### [2.1.8](https://git.griefed.de/prosper/docker-baseimage-ubuntu/compare/2.1.7...2.1.8) (2022-06-02)
+
+
+### 🦊 CI/CD
+
+* Update installed packages. ([4356e1d](https://git.griefed.de/prosper/docker-baseimage-ubuntu/commit/4356e1db10a3dcd109e461f06689c8453d0694ea))
+
+
+### Other
+
+* **deps:** update dependency griefed/gitlab-ci-cd to v2.0.6 ([d249ffc](https://git.griefed.de/prosper/docker-baseimage-ubuntu/commit/d249ffc8284dd4248d1a61b0d3b9b92717bf2c01))
+
 ### [2.1.7](https://git.griefed.de/prosper/docker-baseimage-ubuntu/compare/2.1.6...2.1.7) (2022-05-02)
 
 
