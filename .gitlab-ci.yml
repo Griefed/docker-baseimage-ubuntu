@@ -16,6 +16,14 @@ variables:
   FOCAL_RELEASE_DATE: "current"
   OVERLAY_VERSION: "v2.2.0.3"
 
+workflow:
+  rules:
+    - if: '$CI_MERGE_REQUEST_EVENT_TYPE == "detached"'
+      when: never
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      when: never
+    - when: always
+
 test docker:
   stage: test
   before_script:
