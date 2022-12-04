@@ -1,4 +1,4 @@
-FROM alpine:3.16 as fetcher
+FROM alpine:3.17 as fetcher
 
 # Ubuntu focal architecture
 ARG FOCAL_ARCH="amd64"
