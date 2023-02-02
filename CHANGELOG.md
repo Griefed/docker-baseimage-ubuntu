@@ -1,3 +1,15 @@
+## [2.1.16](https://git.griefed.de/prosper/docker-baseimage-ubuntu/compare/2.1.15...2.1.16) (2023-02-02)
+
+
+### 🦊 CI/CD
+
+* Update installed packages in Docker container. ([0cea62b](https://git.griefed.de/prosper/docker-baseimage-ubuntu/commit/0cea62b6b24a8a397605906587b971486bdc9cd9))
+
+
+### Other
+
+* **deps:** update ghcr.io/griefed/gitlab-ci-cd docker tag to v2.2.5 ([d3180ca](https://git.griefed.de/prosper/docker-baseimage-ubuntu/commit/d3180caa412df44f2d7a2a45e977f3a6e389c806))
+
 ## [2.1.15](https://git.griefed.de/prosper/docker-baseimage-ubuntu/compare/2.1.14...2.1.15) (2023-01-02)
 
 
