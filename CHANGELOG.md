@@ -1,3 +1,16 @@
+## [2.1.20](https://git.griefed.de/prosper/docker-baseimage-ubuntu/compare/2.1.19...2.1.20) (2023-07-02)
+
+
+### 🦊 CI/CD
+
+* Update installed packages in Docker container. ([28d75ac](https://git.griefed.de/prosper/docker-baseimage-ubuntu/commit/28d75ac661c5727a23eeea8a5f626d1caf55332a))
+
+
+### Other
+
+* **deps:** update alpine docker tag to v3.18 ([32a9af1](https://git.griefed.de/prosper/docker-baseimage-ubuntu/commit/32a9af14cb563ae3b8b886625249fdcf3551a9fe))
+* **deps:** update ghcr.io/griefed/gitlab-ci-cd docker tag to v2.2.11 ([df843de](https://git.griefed.de/prosper/docker-baseimage-ubuntu/commit/df843de45b9cddcea0ed87e44c71bae23e7e26f4))
+
 ## [2.1.19](https://git.griefed.de/prosper/docker-baseimage-ubuntu/compare/2.1.18...2.1.19) (2023-06-02)
 
 
