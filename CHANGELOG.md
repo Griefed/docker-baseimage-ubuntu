@@ -1,3 +1,35 @@
+## [2.1.20](https://git.griefed.de/prosper/docker-baseimage-ubuntu/compare/2.1.19...2.1.20) (2023-07-02)
+
+
+### 🦊 CI/CD
+
+* Update installed packages in Docker container. ([28d75ac](https://git.griefed.de/prosper/docker-baseimage-ubuntu/commit/28d75ac661c5727a23eeea8a5f626d1caf55332a))
+
+
+### Other
+
+* **deps:** update alpine docker tag to v3.18 ([32a9af1](https://git.griefed.de/prosper/docker-baseimage-ubuntu/commit/32a9af14cb563ae3b8b886625249fdcf3551a9fe))
+* **deps:** update ghcr.io/griefed/gitlab-ci-cd docker tag to v2.2.11 ([df843de](https://git.griefed.de/prosper/docker-baseimage-ubuntu/commit/df843de45b9cddcea0ed87e44c71bae23e7e26f4))
+
+## [2.1.19](https://git.griefed.de/prosper/docker-baseimage-ubuntu/compare/2.1.18...2.1.19) (2023-06-02)
+
+
+### 🦊 CI/CD
+
+* Update installed packages in Docker container. ([23504f5](https://git.griefed.de/prosper/docker-baseimage-ubuntu/commit/23504f539e111ac52b2b8490f8777d46628eb8d7))
+
+
+### Other
+
+* **deps:** update ghcr.io/griefed/gitlab-ci-cd docker tag to v2.2.10 ([edd114e](https://git.griefed.de/prosper/docker-baseimage-ubuntu/commit/edd114e0ce83dd853bf9af6ff7c7266d94334720))
+
+## [2.1.18](https://git.griefed.de/prosper/docker-baseimage-ubuntu/compare/2.1.17...2.1.18) (2023-05-02)
+
+
+### 🦊 CI/CD
+
+* Update installed packages in Docker container. ([c3eafc9](https://git.griefed.de/prosper/docker-baseimage-ubuntu/commit/c3eafc930f91bed84c8c6c1070dcaa6a8937bc8f))
+
 ## [2.1.17](https://git.griefed.de/prosper/docker-baseimage-ubuntu/compare/2.1.16...2.1.17) (2023-04-04)
 
 
