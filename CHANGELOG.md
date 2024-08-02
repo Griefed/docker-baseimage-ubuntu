@@ -1,3 +1,10 @@
+## [2.1.31](https://git.griefed.de/prosper/docker-baseimage-ubuntu/compare/2.1.30...2.1.31) (2024-08-02)
+
+
+### 🦊 CI/CD
+
+* Update installed packages in Docker container. ([c0e5938](https://git.griefed.de/prosper/docker-baseimage-ubuntu/commit/c0e5938367d2037bd538684b82eb81b6db2b2c32))
+
 ## [2.1.30](https://git.griefed.de/prosper/docker-baseimage-ubuntu/compare/2.1.29...2.1.30) (2024-07-02)
 
 
